@@ -12,10 +12,11 @@ public class Nan extends Personatges{
     
     public Nan(double forca, double constitucio, double velocitat, 
                double inteligencia, double sort, Arma arma){
-        super(forca, constitucio, velocitat, inteligencia, sort, arma);
+        super(forca, constitucio, velocitat, inteligencia, sort, new Arma("Daga"));
         
     }
     
+    @Override
     protected void calculaEstadistiquesDerivades() {
         super.calculaEstadistiquesDerivades(); 
         pd = (forca + arma.wpow + constitucio)/4; 

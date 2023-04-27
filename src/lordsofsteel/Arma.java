@@ -14,10 +14,22 @@ public class Arma {
     protected int wpow;
     protected int wvel;
     
-    public Arma(String tipus, int wpow, int wvel){
-        this.tipus = tipus; 
-        this.wpow = wpow;
-        this.wvel = wvel;
+    public Arma(String tipus){
+        this.tipus = tipus;
+        switch(tipus){
+            case "Daga":
+                this.wpow = 5;
+                this.wvel = 15;
+                break;
+            case "Espasa":
+                this.wpow = 10;
+                this.wvel = 10;
+                break;
+            case "Martell": 
+                this.wpow = 15;
+                this.wvel = 5;
+                break;
+        }
     }
 
     public String getTipus() {
