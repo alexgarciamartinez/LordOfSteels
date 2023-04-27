@@ -11,7 +11,7 @@ package lordsofsteel;
 public class LordsOfSteel {
     public static void main(String[] args) {
         
-        
+        Nan n1 = new Nan(8, 6, 13, 16, 16);
     }
     
 }
