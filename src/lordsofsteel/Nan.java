@@ -17,7 +17,7 @@ public class Nan extends Personatges{
     }
     
     protected void calculaEstadistiquesDerivades() {
-        super.calculaEstadistiquesDerivades();
-        pd = (forca + arma.wpow + constitucio)/4;                
+        super.calculaEstadistiquesDerivades(); 
+        pd = (forca + arma.wpow + constitucio)/4; 
     } 
 }
