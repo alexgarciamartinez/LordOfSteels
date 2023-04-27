@@ -25,12 +25,13 @@ public class Personatges {
     protected Arma arma;
     
     public Personatges(double forca, double constitucio, double velocitat, double
-                       inteligencia, double sort){
+                       inteligencia, double sort, Arma arma){
         this.forca        = forca;
         this.constitucio  = constitucio;
         this.velocitat    = velocitat;
         this.inteligencia = inteligencia;
         this.sort         = sort;
+        this.arma         = arma;
     }
     
     protected void calculaEstadistiquesDerivades(){
