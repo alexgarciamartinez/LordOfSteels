@@ -4,6 +4,8 @@
  */
 package lordsofsteel;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author alexg
@@ -16,7 +18,11 @@ public class LordsOfSteel {
         Mitja mi1 = new Mitja(9,7,7,15,16,new Arma("Martell"));
         Maia ma1 = new Maia(7,9,12,15,17,new Arma("Daga"));
         
-        
+        ArrayList<Personatges> personatges = new ArrayList<Personatges>();
+        personatges.add(n1);
+        personatges.add(h1);
+        personatges.add(mi1);
+        personatges.add(ma1);
     }
     
 }
