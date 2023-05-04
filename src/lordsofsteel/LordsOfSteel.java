@@ -83,5 +83,15 @@ public class LordsOfSteel {
             lluitadors[selec - 1]= personatges.get(opcio-1);
             System.out.println("Personatge triat: " + personatges.get(opcio-1).getNom());
         }
+        
+        // Inici combat
+        Personatges atacant = lluitadors[0];
+        Personatges defensa = lluitadors[1];
+        Dau dau1 = new Dau();
+        Dau dau2 = new Dau();
+        Dau dau3 = new Dau();
+        
+        int valor = dau1.llencar() + dau2.llencar() + dau3.llencar();
+        System.out.println("Valor daus: " + valor);
     }
 }

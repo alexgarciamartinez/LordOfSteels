@@ -10,4 +10,10 @@ package lordsofsteel;
  */
 public class Dau {
     
+    final int MAX = 25;
+    
+    public int llencar(){
+        int resultat = ((int)Math.random()*MAX + 1);
+        return resultat; 
+    }
 }
