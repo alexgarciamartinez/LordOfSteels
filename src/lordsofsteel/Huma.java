@@ -13,9 +13,9 @@ import <any?>;
  */
 public class Huma extends Personatges{
     
-    public Huma(double forca, double constitucio, double velocitat, 
+    public Huma(String nom, double forca, double constitucio, double velocitat, 
                double inteligencia, double sort, Arma arma){
-        super(forca, constitucio, velocitat, inteligencia, sort, arma);
+        super(nom, forca, constitucio, velocitat, inteligencia, sort, arma);
         
     }
     

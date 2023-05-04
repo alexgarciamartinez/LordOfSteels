@@ -24,8 +24,10 @@ public class Personatges {
     
     protected Arma arma;
     
-    public Personatges(double forca, double constitucio, double velocitat, double
+    protected String nom;
+    public Personatges(String nom, double forca, double constitucio, double velocitat, double
                        inteligencia, double sort, Arma arma){
+        this.nom          = nom;
         this.forca        = forca;
         this.constitucio  = constitucio;
         this.velocitat    = velocitat;
@@ -120,6 +122,15 @@ public class Personatges {
     public void setArma(Arma arma) {
         this.arma = arma;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    
     
     
 }
