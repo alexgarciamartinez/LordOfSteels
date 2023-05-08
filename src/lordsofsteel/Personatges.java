@@ -131,6 +131,8 @@ public class Personatges {
         this.nom = nom;
     }
     
-    
+    public void restauraPS(){
+        this.ps = (int)(this.ps * 1.10);
+    }
     
 }

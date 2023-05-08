@@ -8,12 +8,7 @@ package lordsofsteel;
  *
  * @author alexg
  */
-public class Dau {
+public interface Ordre {
     
-    final int MAX = 25;
-    
-    public int llencar() {
-        return (int)(Math.random()*MAX)+1;
-    }
-
+    public void restauraPS();
 }
