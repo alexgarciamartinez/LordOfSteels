@@ -10,5 +10,5 @@ package lordsofsteel;
  */
 public interface Caos {
     
-    public boolean atacReduitPA(); 
+    public boolean atacReduitPA(int valor); 
 }
