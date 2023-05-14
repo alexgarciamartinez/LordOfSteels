@@ -40,16 +40,16 @@ public class LordsOfSteel {
         int opcio = Integer.parseInt(entrada);
         
         switch(opcio){
-            case 1:
+            case 1: // Afegir nou personatge
                 break;
-            case 2:
+            case 2: // Esborrar un personatge
                 break;
-            case 3:
+            case 3: // Editar un personatge
                 break;
-            case 4:
+            case 4: // Iniciar un combat
                 iniciarCombat(personatges);
                 break;
-            case 5:
+            case 5: // Sortir
                 break;
         }
     }
