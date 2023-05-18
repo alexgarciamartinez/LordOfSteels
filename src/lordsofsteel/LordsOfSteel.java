@@ -48,6 +48,7 @@ public class LordsOfSteel {
                     esborrarPersonatge(personatges);
                     break;
                 case 3: // Editar un personatge
+                    editarPersonatge(personatges);
                     break;
                 case 4: // Iniciar un combat
                     iniciarCombat(personatges);
@@ -59,12 +60,76 @@ public class LordsOfSteel {
         }
     }
     public static void afegirPersonatge(ArrayList<Personatges> personatges){
-        System.out.println("1- Nan ");
-        System.out.println("2- Humà ");
-        System.out.println("3- Mitjà ");
-        System.out.println("4- Maia ");
-        System.out.print("Classe de personatge: ");
-        int classePersonatge = sc.nextInt();
+        boolean estadistiquesValides = false;
+        while (!estadistiquesValides){
+            System.out.println("1- Nan ");
+            System.out.println("2- Humà ");
+            System.out.println("3- Mitjà ");
+            System.out.println("4- Maia ");
+            System.out.print("Classe de personatge: ");
+            int classePersonatge = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Nom del personatge: ");
+            String nomPersonatge = sc.nextLine();
+            System.out.print("Força del personatge: ");
+            double forca = sc.nextDouble();
+            System.out.print("Constitució del personatge: ");
+            double constitucio = sc.nextDouble();
+            System.out.print("Velocitat del personatge: ");
+            double velocitat = sc.nextDouble();
+            System.out.print("Intel·ligencia del personatge: ");
+            double inteligencia = sc.nextDouble();
+            System.out.print("Sort del personatge: ");
+            double sort = sc.nextDouble();
+            sc.nextLine();
+            System.out.print("Arma del personatge: ");
+            String tipus = sc.nextLine();
+            
+            if (forca + constitucio + velocitat + inteligencia + sort <= 60){
+                switch (classePersonatge){
+                    case 1:
+                        personatges.add(new Nan(nomPersonatge,forca,constitucio, 
+                            velocitat,inteligencia,sort,new Arma(tipus)));
+                        break;
+                    case 2:
+                        personatges.add(new Huma(nomPersonatge,forca,constitucio, 
+                            velocitat,inteligencia,sort,new Arma(tipus)));
+                        break;
+                    case 3:
+                        personatges.add(new Mitja(nomPersonatge,forca,constitucio, 
+                            velocitat,inteligencia,sort,new Arma(tipus)));
+                        break;
+                    case 4:
+                        personatges.add(new Maia(nomPersonatge,forca,constitucio, 
+                            velocitat,inteligencia,sort,new Arma(tipus)));
+                        break;
+                }
+                estadistiquesValides = true;
+            }
+            else {
+                System.out.println("Les estadistiques no poden superar els 60 pts!");
+            }
+        }
+    }
+    
+    public static void esborrarPersonatge(ArrayList<Personatges> personatges){
+        System.out.println("Quin personatge vols eliminar? ");
+        for (int i = 0; i < personatges.size(); i++){
+            System.out.println(i + ": " + personatges.get(i).getNom());
+        }
+        System.out.print("Personatge a eliminar: ");
+        int personatgeEliminat = sc.nextInt();
+        personatges.remove(personatgeEliminat);
+        
+    }
+    
+    public static void editarPersonatge(ArrayList<Personatges> personatges){
+        System.out.println("Quin personatge vols editar? ");
+        for (int i = 0; i < personatges.size(); i++){
+            System.out.println(i + ": " + personatges.get(i).getNom());
+        }
+        System.out.print("Personatge a editar: ");
+        int personatgeEditat = sc.nextInt();
         sc.nextLine();
         System.out.print("Nom del personatge: ");
         String nomPersonatge = sc.nextLine();
@@ -81,35 +146,14 @@ public class LordsOfSteel {
         sc.nextLine();
         System.out.print("Arma del personatge: ");
         String tipus = sc.nextLine();
+        personatges.get(personatgeEditat).setNom(nomPersonatge);
+        personatges.get(personatgeEditat).setForca(forca);
+        personatges.get(personatgeEditat).setConstitucio(constitucio);
+        personatges.get(personatgeEditat).setVelocitat(velocitat);
+        personatges.get(personatgeEditat).setInteligencia(inteligencia);
+        personatges.get(personatgeEditat).setSort(sort);
+        personatges.get(personatgeEditat).setArma(new Arma(tipus));
         
-        switch (classePersonatge){
-            case 1:
-                personatges.add(new Nan(nomPersonatge,forca,constitucio, 
-                    velocitat,inteligencia,sort,new Arma(tipus)));
-                break;
-            case 2:
-                personatges.add(new Huma(nomPersonatge,forca,constitucio, 
-                    velocitat,inteligencia,sort,new Arma(tipus)));
-                break;
-            case 3:
-                personatges.add(new Mitja(nomPersonatge,forca,constitucio, 
-                    velocitat,inteligencia,sort,new Arma(tipus)));
-                break;
-            case 4:
-                personatges.add(new Maia(nomPersonatge,forca,constitucio, 
-                    velocitat,inteligencia,sort,new Arma(tipus)));
-                break;
-        }
-    }
-    
-    public static void esborrarPersonatge(ArrayList<Personatges> personatges){
-        System.out.println("Quin personatge vols eliminar? ");
-        for (int i = 0; i < personatges.size(); i++){
-            System.out.println(i + ": " + personatges.get(i).getNom());
-        }
-        System.out.print("Personatge a eliminar: ");
-        int personatgeEliminat = sc.nextInt();
-        personatges.remove(personatgeEliminat);
         
     }
     public static void iniciarCombat(ArrayList<Personatges> personatges){
