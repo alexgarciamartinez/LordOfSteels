@@ -16,7 +16,7 @@ public class LordsOfSteel {
     public static void main(String[] args) {
         
         Nan n1 = new Nan("Alberto",8,6, 13,16,16,new Arma("Daga"));
-        Huma h1 = new Huma("Goku",13,16,6,10,6,new Arma("Espasa"));
+        Huma h1 = new Huma("Goku",8,6, 13,16,16,new Arma("Espasa"));
         Mitja mi1 = new Mitja("Roberto",9,7,7,15,16,new Arma("Martell"));
         Maia ma1 = new Maia("Nil",7,9,12,15,17,new Arma("Daga"));
         
@@ -26,34 +26,92 @@ public class LordsOfSteel {
         personatges.add(mi1);
         personatges.add(ma1);
         
-        System.out.println("");
-        System.out.println("**MENÚ PRINCIPAL**");
-        System.out.println("1.- Afegir personatge");
-        System.out.println("2.- Esborrar personatge");
-        System.out.println("3.- Editar personatge");
-        System.out.println("4.- Iniciar combat");
-        System.out.println("5.- Sortir");
-        System.out.println("");
-        System.out.println("Tria l'opció [1-5]: ");
+        boolean sortirMenu = false;
+        while (!sortirMenu){
+            System.out.println("");
+            System.out.println("**MENÚ PRINCIPAL**");
+            System.out.println("1.- Afegir personatge");
+            System.out.println("2.- Esborrar personatge");
+            System.out.println("3.- Editar personatge");
+            System.out.println("4.- Iniciar combat");
+            System.out.println("5.- Sortir");
+            System.out.println("");
+            System.out.println("Tria l'opció [1-5]: ");
+            //String entrada = sc.nextLine();
+            int opcio = sc.nextInt();
+
+            switch(opcio){
+                case 1: // Afegir nou personatge
+                    afegirPersonatge(personatges);
+                    break;
+                case 2: // Esborrar un personatge
+                    esborrarPersonatge(personatges);
+                    break;
+                case 3: // Editar un personatge
+                    break;
+                case 4: // Iniciar un combat
+                    iniciarCombat(personatges);
+                    break;
+                case 5: // Sortir
+                    sortirMenu = true;
+                    break;
+            }    
+        }
+    }
+    public static void afegirPersonatge(ArrayList<Personatges> personatges){
+        System.out.println("1- Nan ");
+        System.out.println("2- Humà ");
+        System.out.println("3- Mitjà ");
+        System.out.println("4- Maia ");
+        System.out.print("Classe de personatge: ");
+        int classePersonatge = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nom del personatge: ");
+        String nomPersonatge = sc.nextLine();
+        System.out.print("Força del personatge: ");
+        double forca = sc.nextDouble();
+        System.out.print("Constitució del personatge: ");
+        double constitucio = sc.nextDouble();
+        System.out.print("Velocitat del personatge: ");
+        double velocitat = sc.nextDouble();
+        System.out.print("Intel·ligencia del personatge: ");
+        double inteligencia = sc.nextDouble();
+        System.out.print("Sort del personatge: ");
+        double sort = sc.nextDouble();
+        sc.nextLine();
+        System.out.print("Arma del personatge: ");
+        String tipus = sc.nextLine();
         
-        String entrada = sc.nextLine();
-        int opcio = Integer.parseInt(entrada);
-        
-        switch(opcio){
-            case 1: // Afegir nou personatge
+        switch (classePersonatge){
+            case 1:
+                personatges.add(new Nan(nomPersonatge,forca,constitucio, 
+                    velocitat,inteligencia,sort,new Arma(tipus)));
                 break;
-            case 2: // Esborrar un personatge
+            case 2:
+                personatges.add(new Huma(nomPersonatge,forca,constitucio, 
+                    velocitat,inteligencia,sort,new Arma(tipus)));
                 break;
-            case 3: // Editar un personatge
+            case 3:
+                personatges.add(new Mitja(nomPersonatge,forca,constitucio, 
+                    velocitat,inteligencia,sort,new Arma(tipus)));
                 break;
-            case 4: // Iniciar un combat
-                iniciarCombat(personatges);
-                break;
-            case 5: // Sortir
+            case 4:
+                personatges.add(new Maia(nomPersonatge,forca,constitucio, 
+                    velocitat,inteligencia,sort,new Arma(tipus)));
                 break;
         }
     }
     
+    public static void esborrarPersonatge(ArrayList<Personatges> personatges){
+        System.out.println("Quin personatge vols eliminar? ");
+        for (int i = 0; i < personatges.size(); i++){
+            System.out.println(i + ": " + personatges.get(i).getNom());
+        }
+        System.out.print("Personatge a eliminar: ");
+        int personatgeEliminat = sc.nextInt();
+        personatges.remove(personatgeEliminat);
+        
+    }
     public static void iniciarCombat(ArrayList<Personatges> personatges){
         boolean[] seleccionats = new boolean [personatges.size()];
         Personatges[] lluitadors = new Personatges[2];
@@ -85,13 +143,42 @@ public class LordsOfSteel {
         }
         
         // Inici combat
-        Personatges atacant = lluitadors[0];
-        Personatges defensa = lluitadors[1];
-        Dau dau1 = new Dau();
-        Dau dau2 = new Dau();
-        Dau dau3 = new Dau();
-        
-        int valor = dau1.llencar() + dau2.llencar() + dau3.llencar();
-        System.out.println("Valor daus: " + valor);
+        Personatges atacant  = lluitadors[0];
+        Personatges defensor = lluitadors[1];
+        atacant.calculaEstadistiquesDerivades();
+        defensor.calculaEstadistiquesDerivades();
+        int contador = 0;
+        do{
+            System.out.println("===== RONDA " + contador + " =====");
+            System.out.println("Atacant: " + atacant.getNom() + " " + atacant.getPs());
+            System.out.println("Defensor: " + defensor.getNom() + " " + defensor.getPs());
+            Dau dau1 = new Dau();
+            Dau dau2 = new Dau();
+            Dau dau3 = new Dau();
+
+            int valor = dau1.llencar() + dau2.llencar() + dau3.llencar();
+            System.out.println("Valor daus: " + valor);
+
+            if (valor <= atacant.getPa()) { 
+                valor = dau1.llencar() + dau2.llencar() + dau3.llencar();
+                if (valor > defensor.getPe()) { // 
+                    defensor.setPs(defensor.getPs() - atacant.getPd());
+                }
+            }
+            
+
+            // Final ronda
+            Personatges aux = atacant;
+            atacant  = defensor;
+            defensor = aux;
+            contador++;
+            if (atacant.getPs() == 0){
+                System.out.println(defensor.getNom() + " guanya");
+            } else if (defensor.getPs() == 0){
+                System.out.println(atacant.getNom() + " guanya");
+            }
+        } while(atacant.getPs() > 0 && atacant.getPs() > 0);
     }
+    
 }
+
