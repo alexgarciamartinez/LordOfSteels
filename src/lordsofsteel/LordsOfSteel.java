@@ -193,9 +193,11 @@ public class LordsOfSteel {
         defensor.calculaEstadistiquesDerivades();
         int contador = 0;
         do{
+            System.out.println("");
             System.out.println("===== RONDA " + contador + " =====");
-            System.out.println("Atacant: " + atacant.getNom() + " " + atacant.getPs());
-            System.out.println("Defensor: " + defensor.getNom() + " " + defensor.getPs());
+            System.out.println("");
+            System.out.println("Atacant: " + atacant.getNom() + " PS: " + atacant.getPs());
+            System.out.println("Defensor: " + defensor.getNom() + " PS: " + defensor.getPs());
             Dau dau1 = new Dau();
             Dau dau2 = new Dau();
             Dau dau3 = new Dau();
@@ -205,9 +207,19 @@ public class LordsOfSteel {
 
             if (valor <= atacant.getPa()) { 
                 valor = dau1.llencar() + dau2.llencar() + dau3.llencar();
+                System.out.println("L'atacant " + atacant.getNom() + " encerta l'atac!");
                 if (valor > defensor.getPe()) { // 
                     defensor.setPs(defensor.getPs() - atacant.getPd());
+                    System.out.println("El defensor no esquiva l'atac! " + defensor.getNom() + 
+                            " té ara " + defensor.getPs() + " PS!");
                 }
+                else {
+                    System.out.println("El defensor " + defensor.getNom() + 
+                            " esquiva l'atac!");
+                }
+            }
+            else{
+                System.out.println("L'atacant " + atacant.getNom() + " erra l'atac!");
             }
             
 
@@ -216,12 +228,12 @@ public class LordsOfSteel {
             atacant  = defensor;
             defensor = aux;
             contador++;
-            if (atacant.getPs() == 0){
+            if (atacant.getPs() <= 0){
                 System.out.println(defensor.getNom() + " guanya");
-            } else if (defensor.getPs() == 0){
+            } else if (defensor.getPs() <= 0){
                 System.out.println(atacant.getNom() + " guanya");
             }
-        } while(atacant.getPs() > 0 && atacant.getPs() > 0);
+        } while(atacant.getPs() > 0 && defensor.getPs() > 0);
     }
     
 }
